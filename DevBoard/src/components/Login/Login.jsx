@@ -16,13 +16,18 @@ import {
 import { useDispatch, useSelector } from 'react-redux'; // Importing two hooks from Redux
 import { useState } from 'react'; // Importing useState hook
 import { useNavigate } from 'react-router-dom';
-import {changeEmailValue, changePasswordValue, login, modifyUser} from '../../features/user/user'; // Importing Redux actions
+import PropTypes from 'prop-types'; // Importing a custom component
+import {
+  changeEmailValue,
+  changePasswordValue,
+  login,
+  modifyUser,
+} from '../../features/user/user'; // Importing Redux actions
 import PasswordInput from './Password/Password';
-import Notification from "../Notification/Notification.jsx";
-import Email from "./Email/Email.jsx";
-import PropTypes from "prop-types"; // Importing a custom component
+import Notification from '../Notification/Notification.jsx';
+import Email from './Email/Email.jsx';
 
-function Login({setShowDiv, setShowLogin}) {
+function Login({ setShowDiv, setShowLogin }) {
   const navigateto = useNavigate();
   // Use the useDispatch and useSelector hooks to access the store and dispatch actions
   const dispatch = useDispatch();
@@ -35,7 +40,7 @@ function Login({setShowDiv, setShowLogin}) {
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [isPasswordValid, setPasswordValid] = useState(true);
 
-  if(status === true) {
+  if (status === true) {
     navigateto('/repositories');
   }
 
@@ -55,7 +60,7 @@ function Login({setShowDiv, setShowLogin}) {
   // Event handler for form submission
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    if (email.trim() === '' || !email.includes('@')) {
+    if (!email.includes('@')) {
       setIsEmailValid(false);
       // Set the email validation state variable to false if the email is not valid
       return;
@@ -85,16 +90,17 @@ function Login({setShowDiv, setShowLogin}) {
   const handleRegister = () => {
     setShowDiv(true);
     setShowLogin(false);
-  }
+  };
   // Render the login form using Chakra-UI components
   return (
     <Flex
-      w={["100%", "100%", "100%", "452px"]}
+      w={['100%', '100%', '100%', '452px']}
       h="100vh"
       align="center"
       justify="space-around"
       bgColor="rgba(247, 250, 252, 0.8)"
-      py={[0, 0, 12, 12]} px={[0, 0, 6, 6]}
+      py={[0, 0, 12, 12]}
+      px={[0, 0, 6, 6]}
       flexDirection="column"
     >
       <Stack align="center">
@@ -105,14 +111,30 @@ function Login({setShowDiv, setShowLogin}) {
           to get acces to your Dashboard 📊
         </Text>
       </Stack>
-      <Box w="100%" h="70%" display="flex" justifyContent="space-around" alignItems="center" bgColor="gray.50" flexDirection="column" borderRadius="md" boxShadow="md">
-
+      <Box
+        w="100%"
+        h="70%"
+        display="flex"
+        justifyContent="space-around"
+        alignItems="center"
+        bgColor="gray.50"
+        flexDirection="column"
+        borderRadius="md"
+        boxShadow="md"
+      >
         <Box w="90%" h="85%" display="flex" justifyContent="center">
-          <FormControl isInvalid={!isEmailValid || !isPasswordValid} w="80%" h="100%" display="flex" flexDirection="column" justifyContent="space-around">
+          <FormControl
+            isInvalid={!isEmailValid || !isPasswordValid}
+            w="80%"
+            h="100%"
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-around"
+          >
             <Box>
               <Email />
               {!isEmailValid && (
-                  <FormErrorMessage>Email is required.</FormErrorMessage>
+                <FormErrorMessage>Email is required.</FormErrorMessage>
               )}
             </Box>
 
@@ -121,7 +143,7 @@ function Login({setShowDiv, setShowLogin}) {
               {' '}
               {/* Use a custom password input component */}
               {!isPasswordValid && (
-                  <FormErrorMessage>Password is required.</FormErrorMessage>
+                <FormErrorMessage>Password is required.</FormErrorMessage>
               )}
             </Box>
 
@@ -145,18 +167,23 @@ function Login({setShowDiv, setShowLogin}) {
                 Register here
               </Link>
             </Text>
-
           </FormControl>
         </Box>
       </Box>
-      {notification && <Notification title="Oupss..." description="Your email/password are incorrect..." status="error" />}
+      {notification && (
+        <Notification
+          title="Oupss..."
+          description="Your email/password are incorrect..."
+          status="error"
+        />
+      )}
     </Flex>
   );
 }
 
 Login.propTypes = {
   setShowDiv: PropTypes.func,
-  setShowLogin: PropTypes.func
+  setShowLogin: PropTypes.func,
 };
 
 export default Login;

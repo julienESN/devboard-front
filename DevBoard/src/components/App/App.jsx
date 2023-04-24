@@ -1,14 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import {
-  Box,
-  Flex,
-  useBreakpointValue,
-  Text,
-  useMediaQuery,
-  Image,
-} from '@chakra-ui/react';
+import { Box, Flex, useMediaQuery, Image } from '@chakra-ui/react';
 import Loader from '../Loader/Loader';
 import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
@@ -21,8 +14,7 @@ import Homepage from '../Homepage/Homepage';
 import StackOverflowSearch from '../StackOverflowSearch/StackOverflowSearch';
 import Npm from '../Npm/Npm';
 import Playground from '../Playground/playground.jsx';
-import Organizations from '../Organizations/Organizations.jsx';
-import BurgerMenu from '../BurgerMenu/BurgerMenu.jsx';
+
 import PostForm from '../PostForm/PostForm.jsx';
 import Posts from '../posts/Posts';
 import MyPosts from '../Myposts/Myposts';
@@ -44,24 +36,6 @@ export default function App() {
     if (token) {
       setIsLoggedIn(true);
     }
-    // if (
-    //   !token && 
-    //   location.pathname == '/repositories' ||
-    //   location.pathname == '/feed'  ||
-    //   location.pathname == '/profile' ||
-    //   location.pathname == '/mypost' ||
-    //   location.pathname == '/post' ||
-    //   location.pathname == '/stackoverflow' ||
-    //   location.pathname == '/editpost/:postId' ||
-    //   location.pathname == '/kanban' ||
-    //   location.pathname == '/playground' ||
-    //   location.pathname == '/likes' ||
-    //   location.pathname == '/addpost' ||
-    //   location.pathname == '/' ||
-    //   location.pathname == '/npm'      
-    // ) {
-    //   window.location.replace('/homepage');
-    // }
   }, []);
   // Redirect user to register page if not logged in and not on login or homepage routes
 
